@@ -1,0 +1,6 @@
+.alert {
+  display: flex;
+  justify-content: space-between;
+  padding: .75rem 1rem;
+  background-color: var(--red-200);
+}

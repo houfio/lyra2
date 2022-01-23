@@ -1,0 +1,56 @@
+.button {
+  position: relative;
+  display: inline-block;
+  padding: .5rem 1rem;
+  color: var(--gray-500);
+  border-radius: 8px;
+  font-size: .9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: none;
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+
+.button:focus {
+  z-index: 1;
+}
+
+.button:disabled {
+  pointer-events: none;
+}
+
+.button-green {
+  background-color: var(--green-200);
+}
+
+.button-green:focus {
+  box-shadow: 0 0 0 3px var(--green-300);
+}
+
+.button-green:disabled {
+  background-color: var(--green-100);
+}
+
+.button-gray {
+  background-color: var(--gray-200);
+}
+
+.button-gray:focus {
+  box-shadow: 0 0 0 3px var(--gray-300);
+}
+
+.button-gray:disabled {
+  background-color: var(--gray-100);
+}
+
+.button-loading {
+  opacity: 0;
+}
+
+.button > .spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% - 4px), calc(-50% - 4px));
+}

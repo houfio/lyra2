@@ -1,0 +1,7 @@
+.cache/
+.idea/
+build/
+node_modules/
+.env
+.npmrc
+.DS_Store
