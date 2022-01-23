@@ -4,5 +4,5 @@ export function url(base: string | undefined, params: Record<string, string | nu
     .map(([k, v]) => [k, String(v)]);
   const serialized = new URLSearchParams(Object.fromEntries(entries)).toString();
 
-  return `${base}${base && '?'}${serialized}`;
+  return `${base ?? ''}${base ? '?' : ''}${serialized}`;
 }
