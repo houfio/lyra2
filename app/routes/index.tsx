@@ -3,7 +3,7 @@ import { ActionFunction, Form, LinksFunction, MetaFunction, redirect, useSearchP
 import { Alert, links as alertLinks } from '~/components/alert';
 import { Button, links as buttonLinks } from '~/components/button';
 import { stateCookie } from '~/cookies';
-import { qs } from '~/utils/qs';
+import { url } from '~/utils/url';
 
 export const meta: MetaFunction = () => ({
   title: 'Lyra | Guess your songs'
@@ -17,13 +17,13 @@ export const links: LinksFunction = () => [
 export const action: ActionFunction = async () => {
   const state = nanoid();
 
-  return redirect(`https://accounts.spotify.com/authorize?${qs({
+  return redirect(url('https://accounts.spotify.com/authorize', {
     response_type: 'code',
     client_id: process.env.CLIENT_ID ?? '',
     scope: 'playlist-read-private,user-library-read',
     redirect_uri: process.env.REDIRECT_URI ?? '',
     state
-  })}`, {
+  }), {
     headers: {
       'set-cookie': await stateCookie.serialize(state)
     }

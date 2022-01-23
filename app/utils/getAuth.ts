@@ -2,7 +2,7 @@ import { addSeconds, isBefore, subSeconds } from 'date-fns';
 import { redirect } from 'remix';
 import { authCookie } from '~/cookies';
 import { TokenCookie, TokenResponse } from '~/types';
-import { qs } from '~/utils/qs';
+import { url } from '~/utils/url';
 
 export async function getAuth(request: Request) {
   const auth = await authCookie.parse(request.headers.get('cookie')) as TokenCookie | undefined;
@@ -19,7 +19,7 @@ export async function getAuth(request: Request) {
 
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'post',
-    body: qs({
+    body: url(undefined, {
       grant_type: 'refresh_token',
       refresh_token: auth.refresh_token
     }),

@@ -1,7 +1,8 @@
 import { addSeconds } from 'date-fns';
 import { LoaderFunction, redirect } from 'remix';
 import { authCookie, stateCookie } from '~/cookies';
-import { qs } from '~/utils/qs';
+import { TokenResponse } from '~/types';
+import { url } from '~/utils/url';
 
 export const loader: LoaderFunction = async ({ request }) => {
   const { searchParams } = new URL(request.url);
@@ -13,7 +14,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const response = await fetch('https://accounts.spotify.com/api/token', {
     method: 'post',
-    body: qs({
+    body: url(undefined, {
       grant_type: 'authorization_code',
       code: searchParams.get('code') ?? '',
       redirect_uri: process.env.REDIRECT_URI ?? ''
@@ -28,7 +29,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     return redirect(`/?error`);
   }
 
-  const data = await response.json();
+  const data = await response.json() as TokenResponse;
 
   return redirect('/app', {
     headers: {

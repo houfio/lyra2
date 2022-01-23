@@ -5,17 +5,17 @@ import { cs } from '~/utils/cs';
 
 import styles from './styles.css';
 
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: styles },
+  ...spinnerLinks()
+];
+
 type Props<T> = {
   as?: T,
   text: string,
   mode?: 'green' | 'gray',
   loading?: boolean
 };
-
-export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: styles },
-  ...spinnerLinks()
-];
 
 export function Button<T extends ElementType = 'button'>({ as, text, mode = 'green', loading, disabled, className, children, ...props }: Props<T> & ComponentPropsWithoutRef<T>) {
   return createElement(as ?? 'button', {
