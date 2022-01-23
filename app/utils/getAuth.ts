@@ -30,7 +30,7 @@ export async function getAuth(request: Request) {
   });
 
   if (!response.ok) {
-    throw redirect('/');
+    throw redirect('/?error');
   }
 
   const data = await response.json() as TokenResponse;

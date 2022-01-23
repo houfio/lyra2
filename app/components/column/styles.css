@@ -1,0 +1,124 @@
+.column {
+  flex: 0 0 100%;
+  position: relative;
+  display: none;
+  flex-direction: column
+}
+
+.column[class*="column-phone"] {
+  display: flex
+}
+
+.column-phone-1 {
+  flex-basis: 16.6666666667%
+}
+
+.column-phone-2 {
+  flex-basis: 33.3333333333%
+}
+
+.column-phone-3 {
+  flex-basis: 50%
+}
+
+.column-phone-4 {
+  flex-basis: 66.6666666667%
+}
+
+.column-phone-5 {
+  flex-basis: 83.3333333333%
+}
+
+.column-phone-6 {
+  flex-basis: 100%
+}
+
+@media(min-width: 37.5rem) {
+  .column[class*="column-tablet"] {
+    display: flex
+  }
+
+  .column-tablet-1 {
+    flex-basis: 16.6666666667%
+  }
+
+  .column-tablet-2 {
+    flex-basis: 33.3333333333%
+  }
+
+  .column-tablet-3 {
+    flex-basis: 50%
+  }
+
+  .column-tablet-4 {
+    flex-basis: 66.6666666667%
+  }
+
+  .column-tablet-5 {
+    flex-basis: 83.3333333333%
+  }
+
+  .column-tablet-6 {
+    flex-basis: 100%
+  }
+}
+
+@media(min-width: 56.25rem) {
+  .column[class*="column-laptop"] {
+    display: flex
+  }
+
+  .column-laptop-1 {
+    flex-basis: 16.6666666667%
+  }
+
+  .column-laptop-2 {
+    flex-basis: 33.3333333333%
+  }
+
+  .column-laptop-3 {
+    flex-basis: 50%
+  }
+
+  .column-laptop-4 {
+    flex-basis: 66.6666666667%
+  }
+
+  .column-laptop-5 {
+    flex-basis: 83.3333333333%
+  }
+
+  .column-laptop-6 {
+    flex-basis: 100%
+  }
+}
+
+@media(min-width: 75rem) {
+  .column[class*="column-desktop"] {
+    display: flex
+  }
+
+  .column-desktop-1 {
+    flex-basis: 16.6666666667%
+  }
+
+  .column-desktop-2 {
+    flex-basis: 33.3333333333%
+  }
+
+  .column-desktop-3 {
+    flex-basis: 50%
+  }
+
+  .column-desktop-4 {
+    flex-basis: 66.6666666667%
+  }
+
+  .column-desktop-5 {
+    flex-basis: 83.3333333333%
+  }
+
+  .column-desktop-6 {
+    flex-basis: 100%
+  }
+}

@@ -28,7 +28,7 @@ export const action: ActionFunction = async () => {
       'set-cookie': await stateCookie.serialize(state)
     }
   });
-}
+};
 
 export default function () {
   const [searchParams] = useSearchParams();

@@ -1,0 +1,58 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row-phone-1 {
+  gap: .5rem;
+}
+
+.row-phone-2 {
+  gap: 1rem;
+}
+
+.row-phone-3 {
+  gap: 1.5rem;
+}
+
+@media(min-width: 37.5rem) {
+  .row-tablet-1 {
+    gap: .5rem;
+  }
+
+  .row-tablet-2 {
+    gap: 1rem;
+  }
+
+  .row-tablet-3 {
+    gap: 1.5rem;
+  }
+}
+
+@media(min-width: 56.25rem) {
+  .row-laptop-1 {
+    gap: .5rem;
+  }
+
+  .row-laptop-2 {
+    gap: 1rem;
+  }
+
+  .row-laptop-3 {
+    gap: 1.5rem;
+  }
+}
+
+@media(min-width: 75rem) {
+  .row-desktop-1 {
+    gap: .5rem;
+  }
+
+  .row-desktop-2 {
+    gap: 1rem;
+  }
+
+  .row-desktop-3 {
+    gap: 1.5rem;
+  }
+}

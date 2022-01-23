@@ -17,7 +17,16 @@ type Props<T> = {
   loading?: boolean
 };
 
-export function Button<T extends ElementType = 'button'>({ as, text, mode = 'green', loading, disabled, className, children, ...props }: Props<T> & ComponentPropsWithoutRef<T>) {
+export function Button<T extends ElementType = 'button'>({
+  as,
+  text,
+  mode = 'green',
+  loading,
+  disabled,
+  className,
+  children,
+  ...props
+}: Props<T> & ComponentPropsWithoutRef<T>) {
   return createElement(as ?? 'button', {
     title: text,
     disabled: loading || disabled,

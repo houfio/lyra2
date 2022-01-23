@@ -9,16 +9,20 @@ export const links: LinksFunction = () => [
 ];
 
 type Props<T> = {
-  as?: T
+  as?: T,
+  gaps: Record<string, number>
 };
 
-export function Container<T extends ElementType = 'div'>({
+export function Row<T extends ElementType = 'div'>({
   as,
+  gaps,
   className,
   ...props
 }: Props<T> & ComponentPropsWithoutRef<T>) {
+  const gapClasses = Object.entries(gaps).map(([k, v]) => `row-${k}-${v}`);
+
   return createElement(as ?? 'div', {
-    className: cs('container', className),
+    className: cs('row', ...gapClasses, className),
     ...props
   });
 }

@@ -1,0 +1,25 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-header {
+  display: flex;
+  background-color: var(--gray-200);
+  border-radius: .5rem;
+}
+
+.tab {
+  flex: 1;
+  padding: .5rem 0;
+  border-radius: .5rem;
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+
+.tab:focus {
+  box-shadow: 0 0 0 3px inset var(--gray-400);
+}
+
+.tab-active {
+  background-color: var(--gray-300);
+}

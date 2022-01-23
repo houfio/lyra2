@@ -1,13 +1,5 @@
 import normalize from 'normalize.css';
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration
-} from 'remix';
-import type { LinksFunction } from 'remix';
+import { Links, LinksFunction, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from 'remix';
 
 import styles from './styles.css';
 

@@ -9,16 +9,20 @@ export const links: LinksFunction = () => [
 ];
 
 type Props<T> = {
-  as?: T
+  as?: T,
+  sizes: Record<string, number>
 };
 
-export function Container<T extends ElementType = 'div'>({
+export function Column<T extends ElementType = 'div'>({
   as,
+  sizes,
   className,
   ...props
 }: Props<T> & ComponentPropsWithoutRef<T>) {
+  const sizeClasses = Object.entries(sizes).map(([k, v]) => `column-${k}-${v}`);
+
   return createElement(as ?? 'div', {
-    className: cs('container', className),
+    className: cs('column', ...sizeClasses, className),
     ...props
   });
 }
