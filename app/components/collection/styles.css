@@ -1,0 +1,12 @@
+.collection {
+  display: flex;
+  align-items: center;
+  background-color: var(--gray-200);
+  border-radius: .5rem;
+  overflow: hidden;
+}
+
+.collection-cover {
+  width: 25%;
+  margin-right: 1rem;
+}

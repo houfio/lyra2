@@ -1,4 +1,5 @@
 import { LinksFunction, LoaderFunction, useLoaderData } from 'remix';
+import { Collection, links as collectionLinks } from '~/components/collection';
 import { Column, links as columnLinks } from '~/components/column';
 import { Container, links as containerLinks } from '~/components/container';
 import { links as rowLinks, Row } from '~/components/row';
@@ -9,6 +10,7 @@ import { getAuth } from '~/utils/getAuth';
 import { url } from '~/utils/url';
 
 export const links: LinksFunction = () => [
+  ...collectionLinks(),
   ...columnLinks(),
   ...containerLinks(),
   ...rowLinks(),
@@ -18,8 +20,8 @@ export const links: LinksFunction = () => [
 export const loader: LoaderFunction = async ({ request }) => {
   const auth = await getAuth(request);
   const [playlists, albums] = await Promise.all([
-    get(auth, url('https://api.spotify.com/v1/me/playlists', { limit: 5 })),
-    get(auth, url('https://api.spotify.com/v1/me/albums', { limit: 5 }))
+    get(auth, url('https://api.spotify.com/v1/me/playlists', { limit: 6 })),
+    get(auth, url('https://api.spotify.com/v1/me/albums', { limit: 6 }))
   ]);
 
   return {
@@ -36,20 +38,20 @@ export default function () {
       <Row gaps={{}}>
         <Column sizes={{ phone: 3 }}>
           <Tabs tabs={['Playlists', 'Albums', 'Custom']}>
-            <>
+            <Row gaps={{ phone: 3 }}>
               {data.playlists.items.map((playlist) => (
-                <div key={playlist.id}>
-                  {playlist.name}
-                </div>
+                <Column key={playlist.id} sizes={{ phone: 3 }}>
+                  <Collection name={playlist.name} cover={playlist.images[0].url} />
+                </Column>
               ))}
-            </>
-            <>
+            </Row>
+            <Row gaps={{ phone: 3 }}>
               {data.albums.items.map((album) => (
-                <div key={album.album.id}>
-                  {album.album.name}
-                </div>
+                <Column key={album.album.id} sizes={{ phone: 3 }}>
+                  <Collection name={album.album.name} cover={album.album.images[0].url} />
+                </Column>
               ))}
-            </>
+            </Row>
             <>
               custom
             </>
