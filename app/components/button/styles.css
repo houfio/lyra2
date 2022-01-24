@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
   padding: .5rem 1rem;
-  color: var(--gray-500);
+  color: rgb(var(--gray-500));
   border-radius: 8px;
   font-size: .9rem;
   font-weight: bold;
@@ -21,27 +21,27 @@
 }
 
 .button-green {
-  background-color: var(--green-200);
+  background-color: rgb(var(--green-200));
 }
 
 .button-green:focus {
-  box-shadow: 0 0 0 3px var(--green-300);
+  box-shadow: 0 0 0 3px rgb(var(--green-300));
 }
 
 .button-green:disabled {
-  background-color: var(--green-100);
+  background-color: rgb(var(--green-100));
 }
 
 .button-gray {
-  background-color: var(--gray-200);
+  background-color: rgb(var(--gray-200));
 }
 
 .button-gray:focus {
-  box-shadow: 0 0 0 3px var(--gray-300);
+  box-shadow: 0 0 0 3px rgb(var(--gray-300));
 }
 
 .button-gray:disabled {
-  background-color: var(--gray-100);
+  background-color: rgb(var(--gray-100));
 }
 
 .button-loading {

@@ -1,5 +1,10 @@
 .navigation {
-  border-top: 3px solid var(--green-200);
+  position: sticky;
+  top: 0;
+  border-top: 3px solid rgb(var(--green-200));
+  background-color: rgba(var(--gray-0), .75);
+  backdrop-filter: saturate(175%) blur(1rem);
+  z-index: 100;
 }
 
 .navigation-inner {
@@ -11,8 +16,18 @@
 }
 
 .navigation-items {
-  display: flex;
+  display: none;
   gap: 1rem;
+}
+
+@media (min-width: 56.25rem) {
+  .navigation-items {
+    display: flex;
+  }
+
+  .navigation-burger {
+    display: none !important;
+  }
 }
 
 .user-pill {
@@ -21,15 +36,15 @@
   gap: .5rem;
   height: 2.125rem;
   padding: .25rem .5rem;
-  color: var(--gray-500);
-  background-color: var(--gray-100);
+  color: rgb(var(--gray-500));
+  background-color: rgb(var(--gray-100));
   border-radius: .5rem;
   text-decoration: none;
   transition: box-shadow .25s ease;
 }
 
 .user-pill:focus {
-  box-shadow: 0 0 0 3px var(--gray-200);
+  box-shadow: 0 0 0 3px rgb(var(--gray-200));
 }
 
 .user-image {

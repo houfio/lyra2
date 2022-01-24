@@ -1,4 +1,4 @@
-import { faArrowRightFromBracket } from '@fortawesome/pro-regular-svg-icons';
+import { faArrowRightFromBracket, faBurger } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, LinksFunction } from 'remix';
 import { Button, links as buttonLinks } from '~/components/button';
@@ -37,6 +37,9 @@ export function Navigation({ user }: Props) {
             <FontAwesomeIcon icon={faArrowRightFromBracket}/>
           </Link>
         </div>
+        <Button text="Menu" className="navigation-burger">
+          <FontAwesomeIcon icon={faBurger} size="lg"/>
+        </Button>
       </Container>
     </nav>
   );
