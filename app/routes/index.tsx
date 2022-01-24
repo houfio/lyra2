@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid';
 import { ActionFunction, Form, LinksFunction, MetaFunction, redirect, useSearchParams, useTransition } from 'remix';
 import { Alert, links as alertLinks } from '~/components/alert';
 import { Button, links as buttonLinks } from '~/components/button';
+import { Container, links as containerLinks } from '~/components/container';
 import { stateCookie } from '~/cookies';
 import { url } from '~/utils/url';
 
@@ -10,8 +11,9 @@ export const meta: MetaFunction = () => ({
 });
 
 export const links: LinksFunction = () => [
+  ...alertLinks(),
   ...buttonLinks(),
-  ...alertLinks()
+  ...containerLinks()
 ];
 
 export const action: ActionFunction = async () => {
@@ -35,13 +37,14 @@ export default function () {
   const { state } = useTransition();
 
   return (
-    <div>
+    <Container>
       {searchParams.has('error') && (
         <Alert text="Oops, something went wrong! Please try again."/>
       )}
+      Welcome to Lyra!
       <Form method="post">
         <Button text="login" type="submit" loading={state === 'submitting'}/>
       </Form>
-    </div>
+    </Container>
   );
 }

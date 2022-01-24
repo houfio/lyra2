@@ -10,12 +10,12 @@ export const links: LinksFunction = () => [
 
 type Props<T> = {
   as?: T,
-  gaps: Record<string, number>
+  gaps?: Record<string, number>
 };
 
 export function Row<T extends ElementType = 'div'>({
   as,
-  gaps,
+  gaps = {},
   className,
   ...props
 }: Props<T> & ComponentPropsWithoutRef<T>) {

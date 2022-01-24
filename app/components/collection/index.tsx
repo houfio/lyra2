@@ -13,18 +13,19 @@ export const links: LinksFunction = () => [
 type Props = {
   name: string,
   cover: string,
+  big?: boolean,
   selected?: boolean,
   setSelected?: () => void
 };
 
-export function Collection({ name, cover, selected, setSelected }: Props) {
+export function Collection({ name, cover, big = false, selected, setSelected }: Props) {
   return createElement(setSelected ? 'button' : 'div', {
-    className: cs('collection', { 'collection-selected': selected }),
+    className: cs('collection', { 'collection-big': big, 'collection-selected': selected }),
     style: { backgroundImage: `url(${cover})` },
     onClick: setSelected
   }, (
     <>
-      {name}
+      <div className="collection-name">{name}</div>
       <FontAwesomeIcon icon={faCheck} className="collection-check"/>
     </>
   ));

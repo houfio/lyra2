@@ -8,7 +8,20 @@
   background-size: contain;
   border-radius: .5rem;
   overflow: hidden;
+  text-align: start;
   transition: background-color .25s ease, box-shadow .25s ease;
+}
+
+.collection-big {
+  align-items: flex-start;
+  height: auto;
+  padding: calc(100% + 1rem) 1rem 1rem 1rem;
+}
+
+.collection-big > .collection-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .collection:focus {
