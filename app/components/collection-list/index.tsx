@@ -1,11 +1,11 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { LinksFunction } from 'remix';
+import { Button } from '~/components/button';
 import { Collection, links as collectionLinks } from '~/components/collection';
 import { Column, links as columnLinks } from '~/components/column';
 import { links as rowLinks, Row } from '~/components/row';
 
 import styles from './styles.css';
-import { Button } from '~/components/button';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
@@ -27,9 +27,9 @@ export function CollectionList({ text, collections, big = false }: Props) {
         {text}
         <Button text="See more" mode="gray"/>
       </div>
-      <Row gaps={{ phone: 2 }}>
+      <Row gaps={{ phone: 1, tablet: 2, desktop: 3 }}>
         {collections.map((collection, index) => (
-          <Column key={index} sizes={{ phone: big ? 1 : 2 }}>
+          <Column key={index} sizes={{ phone: big ? 2 : 6, tablet: big ? 2 : 3, laptop: big ? 1 : 2 }}>
             <Collection
               {...collection}
               big={big}

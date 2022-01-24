@@ -6,18 +6,18 @@
 
 @media (min-width: 37.5rem) {
   .container {
-    width: 35.5rem;
+    width: 36.5rem;
   }
 }
 
 @media (min-width: 56.25rem) {
   .container {
-    width: 54.25rem;
+    width: 55.25rem;
   }
 }
 
 @media (min-width: 75rem) {
   .container {
-    width: 73rem;
+    width: 74rem;
   }
 }

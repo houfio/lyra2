@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LinksFunction, LoaderFunction, useLoaderData } from 'remix';
+import { LinksFunction, LoaderFunction, MetaFunction, useLoaderData } from 'remix';
 import { CollectionList, links as collectionListLinks } from '~/components/collection-list';
 import { Container, links as containerLinks } from '~/components/container';
 import { AlbumsResponse, PlaylistsResponse } from '~/types';
@@ -7,6 +7,10 @@ import { get } from '~/utils/get';
 import { getAuth } from '~/utils/getAuth';
 import { toggle } from '~/utils/toggle';
 import { url } from '~/utils/url';
+
+export const meta: MetaFunction = () => ({
+  title: 'Dashboard | Lyra'
+});
 
 export const links: LinksFunction = () => [
   ...collectionListLinks(),
