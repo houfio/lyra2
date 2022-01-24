@@ -1,12 +1,32 @@
 .collection {
+  position: relative;
   display: flex;
   align-items: center;
-  background-color: var(--gray-200);
+  height: 5rem;
+  padding: 1rem 1rem 1rem 6rem;
+  background: var(--gray-200) no-repeat;
+  background-size: contain;
   border-radius: .5rem;
   overflow: hidden;
+  transition: background-color .25s ease, box-shadow .25s ease;
 }
 
-.collection-cover {
-  width: 25%;
-  margin-right: 1rem;
+.collection:focus {
+  box-shadow: 0 0 0 3px var(--gray-400);
+}
+
+.collection-selected {
+  background-color: var(--gray-300);
+}
+
+.collection-check {
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.collection-selected > .collection-check {
+  opacity: 1;
 }

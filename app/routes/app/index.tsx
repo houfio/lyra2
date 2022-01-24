@@ -8,6 +8,8 @@ import { AlbumsResponse, PlaylistsResponse } from '~/types';
 import { get } from '~/utils/get';
 import { getAuth } from '~/utils/getAuth';
 import { url } from '~/utils/url';
+import { useState } from 'react';
+import { toggle } from '~/utils/toggle';
 
 export const links: LinksFunction = () => [
   ...collectionLinks(),
@@ -31,6 +33,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function () {
+  const [selected, setSelected] = useState<string[]>([]);
   const data = useLoaderData<{ playlists: PlaylistsResponse, albums: AlbumsResponse }>();
 
   return (
@@ -41,14 +44,24 @@ export default function () {
             <Row gaps={{ phone: 3 }}>
               {data.playlists.items.map((playlist) => (
                 <Column key={playlist.id} sizes={{ phone: 3 }}>
-                  <Collection name={playlist.name} cover={playlist.images[0].url} />
+                  <Collection
+                    name={playlist.name}
+                    cover={playlist.images[0].url}
+                    selected={selected.includes(playlist.uri)}
+                    setSelected={() => setSelected(toggle(playlist.uri, selected))}
+                  />
                 </Column>
               ))}
             </Row>
             <Row gaps={{ phone: 3 }}>
               {data.albums.items.map((album) => (
                 <Column key={album.album.id} sizes={{ phone: 3 }}>
-                  <Collection name={album.album.name} cover={album.album.images[0].url} />
+                  <Collection
+                    name={album.album.name}
+                    cover={album.album.images[0].url}
+                    selected={selected.includes(album.album.uri)}
+                    setSelected={() => setSelected(toggle(album.album.uri, selected))}
+                  />
                 </Column>
               ))}
             </Row>

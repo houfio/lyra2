@@ -1,4 +1,8 @@
+import { faCheck } from '@fortawesome/pro-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { createElement } from 'react';
 import { LinksFunction } from 'remix';
+import { cs } from '~/utils/cs';
 
 import styles from './styles.css';
 
@@ -8,14 +12,20 @@ export const links: LinksFunction = () => [
 
 type Props = {
   name: string,
-  cover: string
+  cover: string,
+  selected?: boolean,
+  setSelected?: () => void
 };
 
-export function Collection({ name, cover }: Props) {
-  return (
-    <div className="collection">
-      <img src={cover} className="collection-cover"/>
+export function Collection({ name, cover, selected, setSelected }: Props) {
+  return createElement(setSelected ? 'button' : 'div', {
+    className: cs('collection', { 'collection-selected': selected }),
+    style: { backgroundImage: `url(${cover})` },
+    onClick: setSelected
+  }, (
+    <>
       {name}
-    </div>
-  );
+      <FontAwesomeIcon icon={faCheck} className="collection-check"/>
+    </>
+  ));
 }
