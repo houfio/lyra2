@@ -3,15 +3,15 @@ import { links as navigationLinks, Navigation } from '~/components/navigation';
 import { authCookie } from '~/cookies';
 import { db } from '~/db.server';
 import { MeResponse } from '~/types';
+import { authenticate } from '~/utils/authenticate';
 import { get } from '~/utils/get';
-import { getAuth } from '~/utils/getAuth';
 
 export const links: LinksFunction = () => [
   ...navigationLinks()
 ];
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const auth = await getAuth(request);
+  const auth = await authenticate(request);
   const data = await get<MeResponse>(auth, 'https://api.spotify.com/v1/me');
 
   await db.$connect();

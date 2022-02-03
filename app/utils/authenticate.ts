@@ -4,7 +4,7 @@ import { authCookie } from '~/cookies';
 import { TokenCookie, TokenResponse } from '~/types';
 import { url } from '~/utils/url';
 
-export async function getAuth(request: Request) {
+export async function authenticate(request: Request) {
   const auth = await authCookie.parse(request.headers.get('cookie')) as TokenCookie | undefined;
 
   if (!auth) {

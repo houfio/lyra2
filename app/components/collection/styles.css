@@ -6,7 +6,7 @@
   padding: 1rem 1rem 1rem 6rem;
   background: rgb(var(--gray-200)) no-repeat;
   background-size: contain;
-  border-radius: .5rem;
+  border-radius: 8px;
   overflow: hidden;
   text-align: start;
   transition: background-color .25s ease, box-shadow .25s ease;
@@ -29,13 +29,14 @@
 }
 
 .collection-selected {
-  background-color: rgb(var(--gray-300));
+  box-shadow: 0 0 0 3px rgb(var(--green-200));
 }
 
 .collection-check {
   position: absolute;
   bottom: .5rem;
   right: .5rem;
+  color: rgb(var(--green-200));
   opacity: 0;
   transition: opacity .25s ease;
 }

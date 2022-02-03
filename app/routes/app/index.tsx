@@ -3,8 +3,8 @@ import { LinksFunction, LoaderFunction, MetaFunction, useLoaderData } from 'remi
 import { CollectionList, links as collectionListLinks } from '~/components/collection-list';
 import { Container, links as containerLinks } from '~/components/container';
 import { AlbumsResponse, PlaylistsResponse } from '~/types';
+import { authenticate } from '~/utils/authenticate';
 import { get } from '~/utils/get';
-import { getAuth } from '~/utils/getAuth';
 import { toggle } from '~/utils/toggle';
 import { url } from '~/utils/url';
 
@@ -18,7 +18,7 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const auth = await getAuth(request);
+  const auth = await authenticate(request);
   const [playlists, albums] = await Promise.all([
     get(auth, url('https://api.spotify.com/v1/me/playlists', { limit: 6 })),
     get(auth, url('https://api.spotify.com/v1/me/albums', { limit: 6 }))

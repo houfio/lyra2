@@ -1,0 +1,42 @@
+.notification {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  left: 1rem;
+  max-width: calc(100% - 2rem);
+  height: 3rem;
+  padding: 0 1rem;
+  color: rgb(var(--gray-0));
+  background-color: rgb(var(--gray-500));
+  border-radius: 8px;
+  transition: bottom .25s ease, box-shadow .25s ease;
+  animation: slide-out .25s ease;
+  outline: none;
+  z-index: 150;
+}
+
+.notification:focus {
+  box-shadow: 0 0 0 3px rgb(var(--green-200));
+}
+
+.notification-open {
+  animation-name: slide-in;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(calc(-100% - 2rem));
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}

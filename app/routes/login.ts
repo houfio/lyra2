@@ -9,7 +9,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const state = await stateCookie.parse(request.headers.get('cookie'));
 
   if (searchParams.has('error') || searchParams.get('state') !== state) {
-    return redirect(`/?error`);
+    return redirect(url('/', { error: true }));
   }
 
   const response = await fetch('https://accounts.spotify.com/api/token', {
@@ -26,12 +26,12 @@ export const loader: LoaderFunction = async ({ request }) => {
   });
 
   if (!response.ok) {
-    return redirect(`/?error`);
+    return redirect(url('/', { error: true }));
   }
 
   const data = await response.json() as TokenResponse;
 
-  return redirect('/app', {
+  return redirect(url('/app', { notify: 'Successfully logged in' }), {
     headers: {
       'set-cookie': await authCookie.serialize({
         ...data,

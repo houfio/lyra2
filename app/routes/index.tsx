@@ -37,14 +37,16 @@ export default function () {
   const { state } = useTransition();
 
   return (
-    <Container>
+    <>
       {searchParams.has('error') && (
         <Alert text="Oops, something went wrong! Please try again."/>
       )}
-      Welcome to Lyra!
-      <Form method="post">
-        <Button text="login" type="submit" loading={state === 'submitting'}/>
-      </Form>
-    </Container>
+      <Container>
+        Welcome to Lyra!
+        <Form method="post">
+          <Button text="login" type="submit" loading={state === 'submitting'}/>
+        </Form>
+      </Container>
+    </>
   );
 }
