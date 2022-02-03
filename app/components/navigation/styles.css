@@ -1,6 +1,7 @@
 .navigation {
   position: sticky;
   top: 0;
+  margin-bottom: 3px;
   border-top: 3px solid rgb(var(--green-200));
   background-color: rgba(var(--gray-0), .75);
   backdrop-filter: saturate(175%) blur(1rem);

@@ -1,0 +1,66 @@
+.dialog-backdrop {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--gray-0), .75);
+  animation: fade-out .25s ease forwards;
+  z-index: 500;
+}
+
+.dialog-backdrop-open {
+  animation-name: fade-in;
+}
+
+.dialog {
+  max-width: calc(100% - 2rem);
+  max-height: calc(100% - 2rem);
+  padding: 1.5rem;
+  background-color: rgb(var(--gray-200));
+  border-radius: 8px;
+  animation: jump-out .25s ease forwards;
+}
+
+.dialog-open {
+  animation-name: jump-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes jump-in {
+  from {
+    transform: translateY(1rem);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes jump-out {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(1rem);
+  }
+}

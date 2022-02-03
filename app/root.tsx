@@ -11,6 +11,7 @@ import {
   ScrollRestoration,
   useSearchParams
 } from 'remix';
+import { links as dialogLinks } from '~/components/dialog';
 import { links as notificationLinks } from '~/components/notification';
 import { useNotify } from '~/hooks/useNotify';
 
@@ -22,6 +23,7 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap' },
   { rel: 'stylesheet', href: normalize },
   { rel: 'stylesheet', href: styles },
+  ...dialogLinks(),
   ...notificationLinks()
 ];
 
