@@ -54,3 +54,11 @@
   left: 50%;
   transform: translate(calc(-50% - 4px), calc(-50% - 4px));
 }
+
+.button-icon-left {
+  margin-right: .5rem;
+}
+
+.button-icon-right {
+  margin-left: .5rem;
+}

@@ -9,6 +9,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
   useSearchParams
 } from 'remix';
 import { links as dialogLinks } from '~/components/dialog';
@@ -57,6 +58,28 @@ export default function App() {
         <ScrollRestoration/>
         <Scripts/>
         {process.env.NODE_ENV === 'development' && <LiveReload/>}
+      </body>
+    </html>
+  );
+}
+
+export function CatchBoundary() {
+  const { status, statusText } = useCatch();
+
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <title>Lyra | Not found</title>
+        <Links/>
+      </head>
+      <body>
+        Oops, something went wrong!
+        <div>
+          {status} {statusText}
+        </div>
+        <Scripts/>
       </body>
     </html>
   );

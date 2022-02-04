@@ -1,4 +1,4 @@
-import { faTimes } from '@fortawesome/pro-regular-svg-icons';
+import { faTimes } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { LinksFunction } from 'remix';

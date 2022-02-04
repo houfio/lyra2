@@ -1,4 +1,4 @@
-import { faCheck } from '@fortawesome/pro-regular-svg-icons';
+import { faCheck } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createElement } from 'react';
 import { LinksFunction } from 'remix';

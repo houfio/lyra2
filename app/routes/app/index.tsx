@@ -44,6 +44,7 @@ export default function () {
           selected: selected.includes(playlist.uri),
           setSelected: () => setSelected(toggle(playlist.uri, selected))
         }))}
+        to="/app/playlists"
         big={true}
       />
       <CollectionList
@@ -54,6 +55,7 @@ export default function () {
           selected: selected.includes(album.album.uri),
           setSelected: () => setSelected(toggle(album.album.uri, selected))
         }))}
+        to="/app/albums"
       />
     </Container>
   );

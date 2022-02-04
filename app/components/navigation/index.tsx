@@ -1,4 +1,4 @@
-import { faArrowRightFromBracket, faBurger } from '@fortawesome/pro-regular-svg-icons';
+import { faArrowRightFromBracket, faBurger } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, LinksFunction } from 'remix';
 import { Button, links as buttonLinks } from '~/components/button';

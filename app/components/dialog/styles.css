@@ -22,6 +22,8 @@
   padding: 1.5rem;
   background-color: rgb(var(--gray-200));
   border-radius: 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
   animation: jump-out .25s ease forwards;
 }
 
