@@ -1,49 +1,14 @@
-import { Dialoog } from 'dialoog';
-import normalize from 'normalize.css';
-import { useEffect } from 'react';
-import {
-  Links,
-  LinksFunction,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useCatch,
-  useSearchParams
-} from 'remix';
-import { links as dialogLinks } from '~/components/dialog';
-import { links as notificationLinks } from '~/components/notification';
-import { useNotify } from '~/hooks/useNotify';
+import { cssBundleHref } from '@remix-run/css-bundle';
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import type { LinksFunction } from '@vercel/remix';
 
-import styles from './styles.css';
+export const links: LinksFunction = () => {
+  return [
+    ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : [])
+  ];
+};
 
-export const links: LinksFunction = () => [
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-  { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap' },
-  { rel: 'stylesheet', href: normalize },
-  { rel: 'stylesheet', href: styles },
-  ...dialogLinks(),
-  ...notificationLinks()
-];
-
-export default function App() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const notify = useNotify();
-
-  useEffect(() => {
-    const notification = searchParams.get('notify');
-
-    if (!notification) {
-      return;
-    }
-
-    notify(notification);
-    searchParams.delete('notify');
-    setSearchParams(searchParams);
-  }, [searchParams, setSearchParams, notify]);
-
+export default function Root() {
   return (
     <html lang="en">
       <head>
@@ -54,32 +19,9 @@ export default function App() {
       </head>
       <body>
         <Outlet/>
-        <Dialoog/>
         <ScrollRestoration/>
         <Scripts/>
-        {process.env.NODE_ENV === 'development' && <LiveReload/>}
-      </body>
-    </html>
-  );
-}
-
-export function CatchBoundary() {
-  const { status, statusText } = useCatch();
-
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8"/>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
-        <title>Lyra | Not found</title>
-        <Links/>
-      </head>
-      <body>
-        Oops, something went wrong!
-        <div>
-          {status} {statusText}
-        </div>
-        <Scripts/>
+        <LiveReload/>
       </body>
     </html>
   );

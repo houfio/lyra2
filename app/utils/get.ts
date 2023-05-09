@@ -1,14 +1,15 @@
-import { TokenCookie } from '~/types';
+import { logout, requireToken } from '~/session.server';
 
-export async function get<T>(auth: TokenCookie, url: string) {
+export async function get<T>(request: Request, url: string) {
+  const { accessToken } = await requireToken(request);
   const response = await fetch(url, {
     headers: {
-      authorization: `${auth.token_type} ${auth.access_token}`
+      Authorization: `Bearer ${accessToken}`
     }
   });
 
   if (!response.ok) {
-    throw response;
+    throw await logout(request);
   }
 
   return await response.json() as T;

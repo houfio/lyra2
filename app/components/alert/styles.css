@@ -1,9 +1,0 @@
-.alert {
-  padding: .75rem 0;
-  background-color: rgb(var(--red-200));
-}
-
-.alert-inner {
-  display: flex;
-  justify-content: space-between;
-}
