@@ -1,11 +1,12 @@
 import { createCookieSessionStorage, redirect } from '@vercel/remix';
-import { addSeconds } from 'date-fns';
+import { addSeconds, isAfter, parseISO } from 'date-fns';
 import { createTypedSessionStorage } from 'remix-utils';
 import { z } from 'zod';
 
 import { prisma } from '~/db.server';
 import type { TokenResponse } from '~/types';
 import { get } from '~/utils/get';
+import { url } from '~/utils/url';
 
 const sessionStorage = createCookieSessionStorage({
   cookie: {
@@ -51,6 +52,26 @@ export async function requireToken(request: Request) {
 
   if (!token) {
     throw redirect(`/`);
+  } else if (isAfter(new Date(), parseISO(token.expiry))) {
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'post',
+      body: url(undefined, {
+        grant_type: 'refresh_token',
+        refresh_token: token.refreshToken
+      }),
+      headers: {
+        'Authorization': `Basic ${Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+
+    if (!response.ok) {
+      throw await logout(request);
+    }
+
+    const data = await response.json() as TokenResponse;
+
+    return await createUserSession(request, data, request.url);
   }
 
   return token;
@@ -72,14 +93,14 @@ export async function requireUser(request: Request) {
   });
 }
 
-export async function createUserSession(request: Request, token: TokenResponse) {
+export async function createUserSession(request: Request, token: TokenResponse, destination = '/') {
   const session = await getSession(request);
 
   session.set('accessToken', token.access_token);
   session.set('refreshToken', token.refresh_token);
-  session.set('expiry', addSeconds(Date.now(), token.expires_in).toString());
+  session.set('expiry', addSeconds(Date.now(), token.expires_in).toISOString());
 
-  return redirect('/', {
+  return redirect(destination, {
     headers: {
       'Set-Cookie': await typedSessionStorage.commitSession(session, {
         maxAge: 31_556_952 // one year

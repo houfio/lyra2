@@ -20,8 +20,8 @@ export const loader = async ({ request }: LoaderArgs) => {
       redirect_uri: process.env.SPOTIFY_REDIRECT_URL ?? ''
     }),
     headers: {
-      'authorization': `Basic ${Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
-      'content-type': 'application/x-www-form-urlencoded'
+      'Authorization': `Basic ${Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
   });
 
