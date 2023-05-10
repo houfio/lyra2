@@ -71,7 +71,7 @@ export async function requireToken(request: Request) {
 
     const data = await response.json() as TokenResponse;
 
-    return await createUserSession(request, data, request.url);
+    throw await createUserSession(request, data, request.url);
   }
 
   return token;
@@ -97,8 +97,11 @@ export async function createUserSession(request: Request, token: TokenResponse, 
   const session = await getSession(request);
 
   session.set('accessToken', token.access_token);
-  session.set('refreshToken', token.refresh_token);
   session.set('expiry', addSeconds(Date.now(), token.expires_in).toISOString());
+
+  if (token.refresh_token) {
+    session.set('refreshToken', token.refresh_token);
+  }
 
   return redirect(destination, {
     headers: {
